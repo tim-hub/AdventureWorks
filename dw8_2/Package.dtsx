@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="13"
-  DTS:VersionGUID="{083122D3-F501-4608-8619-839140F07A77}">
+  DTS:VersionBuild="14"
+  DTS:VersionGUID="{EF46CE72-6B2C-424B-A688-639BD20ACBCB}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -360,6 +360,16 @@
       </DTS:ObjectData>
     </DTS:ConnectionManager>
     <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[WINDEV1802EVAL\SQLEXPRESS.dw2_dw]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{3A9E83D6-0E49-4BB6-8B04-1DFA054A5B25}"
+      DTS:ObjectName="WINDEV1802EVAL\SQLEXPRESS.dw2_dw">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=WINDEV1802EVAL\SQLEXPRESS;Initial Catalog=dw2_dw;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[WINDEV1802EVAL\SQLEXPRESS.dw2_tmp]"
       DTS:CreationName="OLEDB"
       DTS:DTSID="{2749B76D-B0DE-4BEA-8DFA-07E203D58DB1}"
@@ -369,13 +379,41 @@
           DTS:ConnectionString="Data Source=WINDEV1802EVAL\SQLEXPRESS;Initial Catalog=dw2_tmp;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[WINDEV1802EVAL\SQLEXPRESS.dw2_tmp 1]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{72AC1A50-06A6-41C4-993F-D7581DC7C2EA}"
+      DTS:ObjectName="WINDEV1802EVAL\SQLEXPRESS.dw2_tmp 1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=WINDEV1802EVAL\SQLEXPRESS;Initial Catalog=dw2_tmp;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
   <DTS:Variables />
   <DTS:Executables>
     <DTS:Executable
+      DTS:refId="Package\Create DW Tables"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{D9545881-18FD-4033-8B07-EAFB52AE6773}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Create DW Tables"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{3A9E83D6-0E49-4BB6-8B04-1DFA054A5B25}"
+          SQLTask:SqlStatementSource="&#xA;&#xA;print '***************************************************************'&#xA;print '****** Section 1: Creating DW Tables'&#xA;print '***************************************************************'&#xA;&#xA;print 'Drop all DW tables (except dimTime)'&#xA;&#xA;if exists (select * from sys.tables where name='factSales')&#xA;&#x9;drop table factSales;&#xA;go&#xA;if exists (select * from sys.tables where name='dimProduct')&#xA;&#x9;drop table dimProduct;&#xA;go&#xA;if exists (select * from sys.tables where name='dimCustomer')&#xA;&#x9;drop table dimCustomer;&#xA;go&#xA;if exists (select * from sys.tables where name='dimEmpoyee')&#xA;&#x9;drop table dimEmployee;&#xA;go&#xA;if exists (select * from sys.tables where name='dimStore')&#xA;&#x9;drop table dimStore;&#xA;go&#xA;if exists (select * from sys.tables where name='dimCategory')&#xA;&#x9;drop table dimCategory;&#xA;go&#xA;if exists (select * from sys.tables where name='dimAddress')&#xA;&#x9;drop table dimAddress;&#xA;go&#xA;&#xA;print 'Creating all dimension tables required'&#xA;--Add statements below...&#xA;&#xA;&#xA;--dimCategory table&#xA;CREATE TABLE dimCategory&#xA;(&#xA;&#x9;CategoryKey&#x9;&#x9;&#x9;int&#x9;&#x9;&#x9;&#x9;IDENTITY(1,1) PRIMARY KEY,&#xA;&#x9;categoryID&#x9;&#x9;&#x9;int       NOT NULL DEFAULT -1,&#xA;&#x9;name&#x9;&#x9;&#x9;nchar(50)       NOT NULL DEFAULT '',&#xA;);&#xA;&#xA;&#xA;-- CREATE TABLE dimCustomer&#xA;-- (&#xA;-- &#x9;CustomerKey&#x9;&#x9;&#x9;int&#x9;&#x9;&#x9;&#x9;IDENTITY(1,1) PRIMARY KEY,&#xA;-- &#x9;CustomerID&#x9;&#x9;&#x9;nchar(5),&#xA;-- &#x9;CompanyName&#x9;&#x9;&#x9;nvarchar(40),&#xA;-- &#x9;ContactName&#x9;&#x9;&#x9;nvarchar(30),&#xA;-- &#x9;ContactTitle&#x9;&#x9;nvarchar(30),&#xA;-- &#x9;Address&#x9;&#x9;&#x9;&#x9;nvarchar(60),&#xA;-- &#x9;City&#x9;&#x9;&#x9;&#x9;nvarchar(15),&#xA;-- &#x9;Region&#x9;&#x9;&#x9;&#x9;nvarchar(15),&#xA;-- &#x9;PostalCode&#x9;&#x9;&#x9;nvarchar(10),&#xA;-- &#x9;Country&#x9;&#x9;&#x9;&#x9;nvarchar(15),&#xA;-- &#x9;Phone&#x9;&#x9;&#x9;&#x9;nvarchar(24),&#xA;-- &#x9;Fax&#x9;&#x9;&#x9;&#x9;&#x9;nvarchar(24)&#xA;-- );&#xA;&#xA;-- --dimProducts table&#xA;-- CREATE TABLE dimProduct&#xA;-- (&#xA;-- &#x9;ProductKey&#x9;&#x9;&#x9;int&#x9;&#x9;&#x9;&#x9;IDENTITY(1,1) PRIMARY KEY,&#xA;-- &#x9;ProductID&#x9;&#x9;&#x9;int,&#xA;-- &#x9;ProductName&#x9;&#x9;&#x9;nvarchar(40),&#xA;-- &#x9;QuantityPerUnit&#x9;&#x9;nvarchar(20),&#xA;-- &#x9;UnitPrice&#x9;&#x9;&#x9;money,&#xA;-- &#x9;UnitsInStock&#x9;&#x9;smallint,&#xA;-- &#x9;UnitsOnOrder&#x9;&#x9;smallint,&#xA;-- &#x9;ReorderLevel&#x9;&#x9;smallint,&#xA;-- &#x9;Discontinued&#x9;&#x9;bit,&#xA;-- &#x9;CategoryName&#x9;&#x9;nvarchar(15),&#xA;-- &#x9;Description&#x9;&#x9;&#x9;ntext,&#xA;-- &#x9;Picture&#x9;&#x9;&#x9;&#x9;image&#xA;-- );&#xA;&#xA;-- --dimSuppliers table&#xA;-- CREATE TABLE dimSupplier&#xA;-- (&#xA;-- &#x9;SupplierKey&#x9;&#x9;&#x9;int&#x9;&#x9;&#x9;&#x9;IDENTITY(1,1) PRIMARY KEY,&#xA;-- &#x9;SupplierID&#x9;&#x9;&#x9;int,&#xA;-- &#x9;CompanyName&#x9;&#x9;&#x9;nvarchar(40),&#xA;-- &#x9;ContactName&#x9;&#x9;&#x9;nvarchar(30),&#xA;-- &#x9;ContactTitle&#x9;&#x9;nvarchar(30),&#xA;-- &#x9;Address&#x9;&#x9;&#x9;&#x9;nvarchar(60),&#xA;-- &#x9;City&#x9;&#x9;&#x9;&#x9;nvarchar(15),&#xA;-- &#x9;Region&#x9;&#x9;&#x9;&#x9;nvarchar(15),&#xA;-- &#x9;PostalCode&#x9;&#x9;&#x9;nvarchar(10),&#xA;-- &#x9;Country&#x9;&#x9;&#x9;&#x9;nvarchar(15),&#xA;-- &#x9;Phone&#x9;&#x9;&#x9;&#x9;nvarchar(24),&#xA;-- &#x9;Fax&#x9;&#x9;&#x9;&#x9;&#x9;nvarchar(24),&#xA;-- &#x9;HomePage&#x9;&#x9;&#x9;ntext&#xA;-- );&#xA;&#xA;&#xA;-- print 'Creating a fact table required'&#xA;-- --Add statements below...&#xA;-- CREATE TABLE &#x9;&#x9;factSales&#xA;-- (&#xA;-- &#x9;ProductKey&#x9;&#x9;&#x9;int&#x9;&#x9;&#x9;&#x9;FOREIGN KEY REFERENCES dimProducts(ProductKey),&#xA;-- &#x9;CustomerKey&#x9;&#x9;&#x9;int&#x9;&#x9;&#x9;&#x9;FOREIGN KEY REFERENCES dimCustomers(CustomerKey),&#xA;-- &#x9;SupplierKey&#x9;&#x9;&#x9;int&#x9;&#x9;&#x9;&#x9;FOREIGN KEY REFERENCES dimSuppliers(SupplierKey),&#xA;-- &#x9;OrderDateKey&#x9;&#x9;int&#x9;&#x9;&#x9;&#x9;FOREIGN KEY REFERENCES dimTime(TimeKey),&#xA;-- &#x9;RequiredDateKey&#x9;&#x9;int&#x9;&#x9;&#x9;&#x9;FOREIGN KEY REFERENCES dimTime(TimeKey),&#xA;-- &#x9;ShippedDateKey&#x9;&#x9;int&#x9;&#x9;&#x9;&#x9;FOREIGN KEY REFERENCES dimTime(TimeKey),&#xA;-- &#x9;OrderID&#x9;&#x9;&#x9;&#x9;int,&#xA;-- &#x9;UnitPrice&#x9;&#x9;&#x9;money,&#xA;-- &#x9;Quantity&#x9;&#x9;&#x9;smallint,&#xA;-- &#x9;Discount&#x9;&#x9;&#x9;real,&#xA;-- &#x9;TotalPrice&#x9;&#x9;&#x9;real,&#xA;-- &#x9;ShipperCompanyName&#x9;nvarchar(40),&#xA;-- &#x9;ShipperPhone&#x9;&#x9;nvarchar(24),&#xA;-- &#x9;PRIMARY KEY (ProductKey, CustomerKey, SupplierKey, OrderDateKey)&#xA;-- );&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
       DTS:refId="Package\CreateDimTime"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
+      DTS:Disabled="True"
       DTS:DTSID="{71A53739-0249-41B4-81D4-DC9E9DAC866A}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
@@ -1664,7 +1702,7 @@
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:s="clr-namespace:System;assembly=mscorlib">
         <NodeLayout
           Size="155,42"
           Id="Package\Data Flow Task"
@@ -1672,7 +1710,25 @@
         <NodeLayout
           Size="156,42"
           Id="Package\CreateDimTime"
-          TopLeft="608,113" />
+          TopLeft="5.5,5.5" />
+        <NodeLayout
+          Size="169,42"
+          Id="Package\Create DW Tables"
+          TopLeft="5.5,74.5" />
+        <GroupLayout
+          Text="One Time Prepare"
+          ParentId="Package"
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="180,172"
+          Size="180,215"
+          Id="482876d9-4345-413a-a1ea-7ce30e625bee"
+          TopLeft="602.5,14.5">
+          <GroupLayout.ChildrenIds>
+            <s:String>Package\CreateDimTime</s:String>
+            <s:String>Package\Create DW Tables</s:String>
+          </GroupLayout.ChildrenIds>
+        </GroupLayout>
       </GraphLayout>
     </LayoutInfo>
   </Package>
