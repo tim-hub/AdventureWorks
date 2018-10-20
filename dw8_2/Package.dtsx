@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="124"
-  DTS:VersionGUID="{1DB82C54-87EE-465E-9049-81FBE30AD188}">
+  DTS:VersionBuild="126"
+  DTS:VersionGUID="{2C39B38E-A7CD-4397-B7F6-B219ECBDA276}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -59,7 +59,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Create DQLog"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="1">
+      DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -77,7 +77,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Create DW Tables"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="0">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -354,6 +354,135 @@
               </outputs>
             </component>
             <component
+              refId="Package\CreateDimCategory\Insert Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Insert Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[dimCategory]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\CreateDimCategory\Insert Destination.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[WINDEV1802EVAL\SQLEXPRESS.dw2_dw]"
+                  connectionManagerRefId="Package.ConnectionManagers[WINDEV1802EVAL\SQLEXPRESS.dw2_dw]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\CreateDimCategory\Insert Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\CreateDimCategory\Insert Destination.Inputs[OLE DB Destination Input].Columns[ProductCategoryID]"
+                      cachedDataType="i4"
+                      cachedName="ProductCategoryID"
+                      externalMetadataColumnId="Package\CreateDimCategory\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[categoryID]"
+                      lineageId="Package\CreateDimCategory\Union All 6.Outputs[Union All Output 1].Columns[ProductCategoryID]" />
+                    <inputColumn
+                      refId="Package\CreateDimCategory\Insert Destination.Inputs[OLE DB Destination Input].Columns[Name]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Name"
+                      externalMetadataColumnId="Package\CreateDimCategory\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[name]"
+                      lineageId="Package\CreateDimCategory\Union All 6.Outputs[Union All Output 1].Columns[Name]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\CreateDimCategory\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[CategoryKey]"
+                      dataType="i4"
+                      name="CategoryKey" />
+                    <externalMetadataColumn
+                      refId="Package\CreateDimCategory\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[categoryID]"
+                      dataType="i4"
+                      name="categoryID" />
+                    <externalMetadataColumn
+                      refId="Package\CreateDimCategory\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[name]"
+                      dataType="wstr"
+                      length="50"
+                      name="name" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\CreateDimCategory\Insert Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\CreateDimCategory\Insert Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\CreateDimCategory\Insert Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\CreateDimCategory\Insert Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\CreateDimCategory\Insert Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\CreateDimCategory\Insert Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
               refId="Package\CreateDimCategory\Multicast 3"
               componentClassID="Microsoft.Multicast"
               contactInfo="Multicast;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
@@ -392,13 +521,13 @@
               </outputs>
             </component>
             <component
-              refId="Package\CreateDimCategory\OLE DB Destination"
-              componentClassID="Microsoft.OLEDBDestination"
-              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
-              description="OLE DB Destination"
-              name="OLE DB Destination"
+              refId="Package\CreateDimCategory\OLE DB Command"
+              componentClassID="Microsoft.OLEDBCommand"
+              contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
+              name="OLE DB Command"
               usesDispositions="true"
-              version="4">
+              version="2">
               <properties>
                 <property
                   dataType="System.Int32"
@@ -406,50 +535,18 @@
                   name="CommandTimeout">0</property>
                 <property
                   dataType="System.String"
-                  description="Specifies the name of the database object used to open a rowset."
-                  name="OpenRowset">[dbo].[dimCategory]</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies the variable that contains the name of the database object used to open a rowset."
-                  name="OpenRowsetVariable"></property>
-                <property
-                  dataType="System.String"
                   description="The SQL command to be executed."
+                  expressionType="Notify"
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">UPDATE [dbo].[dimCategory] SET [name] = ? WHERE [categoryID] = ?</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the column code page to use when code page information is unavailable from the data source."
                   name="DefaultCodePage">1252</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Forces the use of the DefaultCodePage property value when describing character data."
-                  name="AlwaysUseDefaultCodePage">false</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the mode used to access the database."
-                  name="AccessMode"
-                  typeConverter="AccessMode">3</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
-                  name="FastLoadKeepIdentity">false</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
-                  name="FastLoadKeepNulls">false</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
-                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
-                  name="FastLoadMaxInsertCommitSize">2147483647</property>
               </properties>
               <connections>
                 <connection
-                  refId="Package\CreateDimCategory\OLE DB Destination.Connections[OleDbConnection]"
+                  refId="Package\CreateDimCategory\OLE DB Command.Connections[OleDbConnection]"
                   connectionManagerID="Package.ConnectionManagers[WINDEV1802EVAL\SQLEXPRESS.dw2_dw]"
                   connectionManagerRefId="Package.ConnectionManagers[WINDEV1802EVAL\SQLEXPRESS.dw2_dw]"
                   description="The OLE DB runtime connection used to access the database."
@@ -457,62 +554,193 @@
               </connections>
               <inputs>
                 <input
-                  refId="Package\CreateDimCategory\OLE DB Destination.Inputs[OLE DB Destination Input]"
-                  errorOrTruncationOperation="Insert"
+                  refId="Package\CreateDimCategory\OLE DB Command.Inputs[OLE DB Command Input]"
+                  errorOrTruncationOperation="Command Execution"
                   errorRowDisposition="FailComponent"
                   hasSideEffects="true"
-                  name="OLE DB Destination Input">
+                  name="OLE DB Command Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\CreateDimCategory\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Name]"
+                      refId="Package\CreateDimCategory\OLE DB Command.Inputs[OLE DB Command Input].Columns[ProductCategoryID]"
+                      cachedDataType="i4"
+                      cachedName="ProductCategoryID"
+                      externalMetadataColumnId="Package\CreateDimCategory\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      lineageId="Package\CreateDimCategory\Union All 6.Outputs[Union All Output 1].Columns[ProductCategoryID]" />
+                    <inputColumn
+                      refId="Package\CreateDimCategory\OLE DB Command.Inputs[OLE DB Command Input].Columns[Name]"
                       cachedDataType="wstr"
                       cachedLength="50"
                       cachedName="Name"
-                      externalMetadataColumnId="Package\CreateDimCategory\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[name]"
+                      externalMetadataColumnId="Package\CreateDimCategory\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
                       lineageId="Package\CreateDimCategory\Union All 6.Outputs[Union All Output 1].Columns[Name]" />
-                    <inputColumn
-                      refId="Package\CreateDimCategory\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ProductCategoryID]"
-                      cachedDataType="i4"
-                      cachedName="ProductCategoryID"
-                      externalMetadataColumnId="Package\CreateDimCategory\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[categoryID]"
-                      lineageId="Package\CreateDimCategory\Union All 6.Outputs[Union All Output 1].Columns[ProductCategoryID]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\CreateDimCategory\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CategoryKey]"
-                      dataType="i4"
-                      name="CategoryKey" />
-                    <externalMetadataColumn
-                      refId="Package\CreateDimCategory\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[categoryID]"
-                      dataType="i4"
-                      name="categoryID" />
-                    <externalMetadataColumn
-                      refId="Package\CreateDimCategory\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[name]"
+                      refId="Package\CreateDimCategory\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
                       dataType="wstr"
                       length="50"
-                      name="name" />
+                      name="Param_0">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\CreateDimCategory\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      dataType="i4"
+                      name="Param_1">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
                   </externalMetadataColumns>
                 </input>
               </inputs>
               <outputs>
                 <output
-                  refId="Package\CreateDimCategory\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  refId="Package\CreateDimCategory\OLE DB Command.Outputs[OLE DB Command Output]"
+                  exclusionGroup="1"
+                  name="OLE DB Command Output"
+                  synchronousInputId="Package\CreateDimCategory\OLE DB Command.Inputs[OLE DB Command Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\CreateDimCategory\OLE DB Command.Outputs[OLE DB Command Error Output]"
                   exclusionGroup="1"
                   isErrorOut="true"
-                  name="OLE DB Destination Error Output"
-                  synchronousInputId="Package\CreateDimCategory\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  name="OLE DB Command Error Output"
+                  synchronousInputId="Package\CreateDimCategory\OLE DB Command.Inputs[OLE DB Command Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\CreateDimCategory\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      refId="Package\CreateDimCategory\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\CreateDimCategory\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      lineageId="Package\CreateDimCategory\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\CreateDimCategory\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      refId="Package\CreateDimCategory\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\CreateDimCategory\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\CreateDimCategory\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\CreateDimCategory\OLE DB Command 1"
+              componentClassID="Microsoft.OLEDBCommand"
+              contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
+              name="OLE DB Command 1"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">UPDATE [dbo].[dimCategory] SET [name] = ? WHERE [categoryID] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\CreateDimCategory\OLE DB Command 1.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[WINDEV1802EVAL\SQLEXPRESS.dw2_dw]"
+                  connectionManagerRefId="Package.ConnectionManagers[WINDEV1802EVAL\SQLEXPRESS.dw2_dw]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\CreateDimCategory\OLE DB Command 1.Inputs[OLE DB Command Input]"
+                  errorOrTruncationOperation="Command Execution"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Command Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\CreateDimCategory\OLE DB Command 1.Inputs[OLE DB Command Input].Columns[ProductCategoryID]"
+                      cachedDataType="i4"
+                      cachedName="ProductCategoryID"
+                      externalMetadataColumnId="Package\CreateDimCategory\OLE DB Command 1.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      lineageId="Package\CreateDimCategory\Union All 6.Outputs[Union All Output 1].Columns[ProductCategoryID]" />
+                    <inputColumn
+                      refId="Package\CreateDimCategory\OLE DB Command 1.Inputs[OLE DB Command Input].Columns[Name]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Name"
+                      externalMetadataColumnId="Package\CreateDimCategory\OLE DB Command 1.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      lineageId="Package\CreateDimCategory\Union All 6.Outputs[Union All Output 1].Columns[Name]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\CreateDimCategory\OLE DB Command 1.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      dataType="wstr"
+                      length="50"
+                      name="Param_0">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\CreateDimCategory\OLE DB Command 1.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      dataType="i4"
+                      name="Param_1">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\CreateDimCategory\OLE DB Command 1.Outputs[OLE DB Command Output]"
+                  exclusionGroup="1"
+                  name="OLE DB Command Output"
+                  synchronousInputId="Package\CreateDimCategory\OLE DB Command 1.Inputs[OLE DB Command Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\CreateDimCategory\OLE DB Command 1.Outputs[OLE DB Command Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Command Error Output"
+                  synchronousInputId="Package\CreateDimCategory\OLE DB Command 1.Inputs[OLE DB Command Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\CreateDimCategory\OLE DB Command 1.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\CreateDimCategory\OLE DB Command 1.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\CreateDimCategory\OLE DB Command 1.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\CreateDimCategory\OLE DB Command 1.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -1264,6 +1492,159 @@
               </outputs>
             </component>
             <component
+              refId="Package\CreateDimCategory\Slowly Changing Dimension"
+              componentClassID="Microsoft.SCD"
+              contactInfo="Slowly Changing Dimension;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;3"
+              description="Updates a SQL Server Analysis Services data warehouse dimension. Update dimension records that are already present and  insert dimension records that aren't. For example, update the DimProduct table of the AdventureWorksDW OLAP database with data from the Products table in the AdventureWorks OLTP database."
+              name="Slowly Changing Dimension"
+              version="3">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SELECT statement used to create a schema rowset."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT [categoryID], [name] FROM [dbo].[dimCategory]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the WHERE clause in the SELECT statement that selects the current row among rows with identical business keys."
+                  name="CurrentRowWhere"></property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether historical attribute updates are directed to the transformation output for changing attribute updates."
+                  name="UpdateChangingAttributeHistory">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the transformation fails when columns with fixed attributes contain changes."
+                  name="FailOnFixedAttributeChange">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the column name for the inferred member."
+                  name="InferredMemberIndicator"></property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether inferred member updates are detected."
+                  name="EnableInferredMember">true</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the transformation fails when a lookup of an existing record fails."
+                  name="FailOnLookupFailure">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies that all rows in the input are new or the transformation detects the change type."
+                  name="IncomingRowChangeType"
+                  typeConverter="IncomingRowChangeType">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\CreateDimCategory\Slowly Changing Dimension.Connections[LookupConnection]"
+                  connectionManagerID="Package.ConnectionManagers[WINDEV1802EVAL\SQLEXPRESS.dw2_dw]"
+                  connectionManagerRefId="Package.ConnectionManagers[WINDEV1802EVAL\SQLEXPRESS.dw2_dw]"
+                  description="Defines the connection to use for lookups in the dimension table"
+                  name="LookupConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\CreateDimCategory\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]"
+                  name="Slowly Changing Dimension Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\CreateDimCategory\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[ProductCategoryID]"
+                      cachedDataType="i4"
+                      cachedName="ProductCategoryID"
+                      externalMetadataColumnId="Package\CreateDimCategory\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[categoryID]"
+                      lineageId="Package\CreateDimCategory\Union All 6.Outputs[Union All Output 1].Columns[ProductCategoryID]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\CreateDimCategory\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[Name]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Name"
+                      externalMetadataColumnId="Package\CreateDimCategory\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[name]"
+                      lineageId="Package\CreateDimCategory\Union All 6.Outputs[Union All Output 1].Columns[Name]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">2</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\CreateDimCategory\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[categoryID]"
+                      dataType="i4"
+                      name="categoryID" />
+                    <externalMetadataColumn
+                      refId="Package\CreateDimCategory\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[name]"
+                      dataType="wstr"
+                      length="50"
+                      name="name" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\CreateDimCategory\Slowly Changing Dimension.Outputs[Unchanged Output]"
+                  description="Unchanged rows"
+                  exclusionGroup="1"
+                  name="Unchanged Output"
+                  synchronousInputId="Package\CreateDimCategory\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\CreateDimCategory\Slowly Changing Dimension.Outputs[New Output]"
+                  description="New rows"
+                  exclusionGroup="1"
+                  name="New Output"
+                  synchronousInputId="Package\CreateDimCategory\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\CreateDimCategory\Slowly Changing Dimension.Outputs[Fixed Attribute Output]"
+                  description="Rows with changes in columns tagged FixedAttribute"
+                  exclusionGroup="1"
+                  name="Fixed Attribute Output"
+                  synchronousInputId="Package\CreateDimCategory\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\CreateDimCategory\Slowly Changing Dimension.Outputs[Changing Attribute Updates Output]"
+                  description="These rows contain new information for ChangingAttribute (Type 1) column changes"
+                  exclusionGroup="1"
+                  name="Changing Attribute Updates Output"
+                  synchronousInputId="Package\CreateDimCategory\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\CreateDimCategory\Slowly Changing Dimension.Outputs[Historical Attribute Inserts Output]"
+                  description="HistoricalAttribute (Type 2) changes result in these new rows"
+                  exclusionGroup="2"
+                  name="Historical Attribute Inserts Output"
+                  synchronousInputId="Package\CreateDimCategory\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\CreateDimCategory\Slowly Changing Dimension.Outputs[Inferred Member Updates Output]"
+                  description="Information to update unpopulated initial dimension row"
+                  exclusionGroup="1"
+                  name="Inferred Member Updates Output"
+                  synchronousInputId="Package\CreateDimCategory\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
               refId="Package\CreateDimCategory\Union All 6"
               componentClassID="Microsoft.UnionAll"
               contactInfo="Union All;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
@@ -1434,6 +1815,11 @@
           </components>
           <paths>
             <path
+              refId="Package\CreateDimCategory.Paths[Changing Attribute Updates Output]"
+              endId="Package\CreateDimCategory\OLE DB Command 1.Inputs[OLE DB Command Input]"
+              name="Changing Attribute Updates Output"
+              startId="Package\CreateDimCategory\Slowly Changing Dimension.Outputs[Changing Attribute Updates Output]" />
+            <path
               refId="Package\CreateDimCategory.Paths[Clean Data]"
               endId="Package\CreateDimCategory\Union All 6.Inputs[Union All Input 2]"
               name="Clean Data"
@@ -1453,6 +1839,11 @@
               endId="Package\CreateDimCategory\OLE DB Destination 4.Inputs[OLE DB Destination Input]"
               name="ID less than 0"
               startId="Package\CreateDimCategory\Check Product Category.Outputs[ID less than 0]" />
+            <path
+              refId="Package\CreateDimCategory.Paths[Inferred Member Updates Output]"
+              endId="Package\CreateDimCategory\OLE DB Command.Inputs[OLE DB Command Input]"
+              name="Inferred Member Updates Output"
+              startId="Package\CreateDimCategory\Slowly Changing Dimension.Outputs[Inferred Member Updates Output]" />
             <path
               refId="Package\CreateDimCategory.Paths[Multicast Output 2]"
               endId="Package\CreateDimCategory\Fix Clothing.Inputs[Derived Column Input]"
@@ -1474,13 +1865,18 @@
               name="NAME is NULL"
               startId="Package\CreateDimCategory\Check Product Category.Outputs[NAME is NULL]" />
             <path
+              refId="Package\CreateDimCategory.Paths[New Output]"
+              endId="Package\CreateDimCategory\Insert Destination.Inputs[OLE DB Destination Input]"
+              name="New Output"
+              startId="Package\CreateDimCategory\Slowly Changing Dimension.Outputs[New Output]" />
+            <path
               refId="Package\CreateDimCategory.Paths[OLE DB Source Output]"
               endId="Package\CreateDimCategory\Check Product Category.Inputs[Conditional Split Input]"
               name="OLE DB Source Output"
               startId="Package\CreateDimCategory\ProductCategory.Outputs[OLE DB Source Output]" />
             <path
               refId="Package\CreateDimCategory.Paths[Union All Output 1]"
-              endId="Package\CreateDimCategory\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              endId="Package\CreateDimCategory\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]"
               name="Union All Output 1"
               startId="Package\CreateDimCategory\Union All 6.Outputs[Union All Output 1]" />
           </paths>
@@ -16165,34 +16561,34 @@ where [refTable].[ProductCategoryID] = ?</property>
               startId="Package\OverAll\Multicast 6.Outputs[Multicast Output 1]" />
             <path
               refId="Package\OverAll.Paths[Derived Column Output5]"
-              endId="Package\OverAll\Union All 3.Inputs[Union All Input 2]"
+              endId="Package\OverAll\Union All 8.Inputs[Union All Input 2]"
               name="Derived Column Output"
-              startId="Package\OverAll\Fix false to 0.Outputs[Derived Column Output]" />
+              startId="Package\OverAll\FixNull.Outputs[Derived Column Output]" />
             <path
               refId="Package\OverAll.Paths[Derived Column Output4]"
-              endId="Package\OverAll\Union All 2.Inputs[Union All Input 2]"
-              name="Derived Column Output"
-              startId="Package\OverAll\3 Fix Not NULL.Outputs[Derived Column Output]" />
-            <path
-              refId="Package\OverAll.Paths[Derived Column Output3]"
-              endId="Package\OverAll\Union All 1.Inputs[Union All Input 1]"
-              name="Derived Column Output"
-              startId="Package\OverAll\Fix Not Null 1.Outputs[Derived Column Output]" />
-            <path
-              refId="Package\OverAll.Paths[Derived Column Output2]"
-              endId="Package\OverAll\Union All.Inputs[Union All Input 2]"
-              name="Derived Column Output"
-              startId="Package\OverAll\Fix Not Null.Outputs[Derived Column Output]" />
-            <path
-              refId="Package\OverAll.Paths[Derived Column Output1]"
               endId="Package\OverAll\Union All 8.Inputs[Union All Input 3]"
               name="Derived Column Output"
               startId="Package\OverAll\FixNegative.Outputs[Derived Column Output]" />
             <path
-              refId="Package\OverAll.Paths[Derived Column Output]"
-              endId="Package\OverAll\Union All 8.Inputs[Union All Input 2]"
+              refId="Package\OverAll.Paths[Derived Column Output3]"
+              endId="Package\OverAll\Union All.Inputs[Union All Input 2]"
               name="Derived Column Output"
-              startId="Package\OverAll\FixNull.Outputs[Derived Column Output]" />
+              startId="Package\OverAll\Fix Not Null.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\OverAll.Paths[Derived Column Output2]"
+              endId="Package\OverAll\Union All 1.Inputs[Union All Input 1]"
+              name="Derived Column Output"
+              startId="Package\OverAll\Fix Not Null 1.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\OverAll.Paths[Derived Column Output1]"
+              endId="Package\OverAll\Union All 2.Inputs[Union All Input 2]"
+              name="Derived Column Output"
+              startId="Package\OverAll\3 Fix Not NULL.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\OverAll.Paths[Derived Column Output]"
+              endId="Package\OverAll\Union All 3.Inputs[Union All Input 2]"
+              name="Derived Column Output"
+              startId="Package\OverAll\Fix false to 0.Outputs[Derived Column Output]" />
             <path
               refId="Package\OverAll.Paths[Flag is false]"
               endId="Package\OverAll\Multicast SalesFlag.Inputs[Multicast Input 1]"
@@ -16225,44 +16621,44 @@ where [refTable].[ProductCategoryID] = ?</property>
               startId="Package\OverAll\Conditional Split.Outputs[JobTitle Null]" />
             <path
               refId="Package\OverAll.Paths[Multicast Output 17]"
-              endId="Package\OverAll\3 Fix Not NULL.Inputs[Derived Column Input]"
+              endId="Package\OverAll\Fix false to 0.Inputs[Derived Column Input]"
               name="Multicast Output 1"
-              startId="Package\OverAll\3 Multicast.Outputs[Multicast Output 1]" />
+              startId="Package\OverAll\Multicast SalesFlag.Outputs[Multicast Output 1]" />
             <path
               refId="Package\OverAll.Paths[Multicast Output 15]"
-              endId="Package\OverAll\SalePersonBonusFix13.Inputs[SQL Server Destination Input]"
-              name="Multicast Output 1"
-              startId="Package\OverAll\Multicast 7.Outputs[Multicast Output 1]" />
-            <path
-              refId="Package\OverAll.Paths[Multicast Output 14]"
-              endId="Package\OverAll\SalesPersonBonusFix26.Inputs[SQL Server Destination Input]"
-              name="Multicast Output 1"
-              startId="Package\OverAll\Multicast 8.Outputs[Multicast Output 1]" />
-            <path
-              refId="Package\OverAll.Paths[Multicast Output 16]"
-              endId="Package\OverAll\Fix Not Null 1.Inputs[Derived Column Input]"
-              name="Multicast Output 1"
-              startId="Package\OverAll\Multicast 1.Outputs[Multicast Output 1]" />
-            <path
-              refId="Package\OverAll.Paths[Multicast Output 12]"
-              endId="Package\OverAll\Union All 7.Inputs[Union All Input 1]"
-              name="Multicast Output 1"
-              startId="Package\OverAll\Multicast 5.Outputs[Multicast Output 1]" />
-            <path
-              refId="Package\OverAll.Paths[Multicast Output 11]"
               endId="Package\OverAll\Fix Not Null.Inputs[Derived Column Input]"
               name="Multicast Output 1"
               startId="Package\OverAll\Multicast.Outputs[Multicast Output 1]" />
             <path
-              refId="Package\OverAll.Paths[Multicast Output 1]"
+              refId="Package\OverAll.Paths[Multicast Output 14]"
+              endId="Package\OverAll\Union All 7.Inputs[Union All Input 1]"
+              name="Multicast Output 1"
+              startId="Package\OverAll\Multicast 5.Outputs[Multicast Output 1]" />
+            <path
+              refId="Package\OverAll.Paths[Multicast Output 16]"
               endId="Package\OverAll\EmployeeHireDateAllow25.Inputs[SQL Server Destination Input]"
               name="Multicast Output 1"
               startId="Package\OverAll\Multicast 4.Outputs[Multicast Output 1]" />
             <path
-              refId="Package\OverAll.Paths[Multicast Output 13]"
-              endId="Package\OverAll\Fix false to 0.Inputs[Derived Column Input]"
+              refId="Package\OverAll.Paths[Multicast Output 12]"
+              endId="Package\OverAll\SalesPersonBonusFix26.Inputs[SQL Server Destination Input]"
               name="Multicast Output 1"
-              startId="Package\OverAll\Multicast SalesFlag.Outputs[Multicast Output 1]" />
+              startId="Package\OverAll\Multicast 8.Outputs[Multicast Output 1]" />
+            <path
+              refId="Package\OverAll.Paths[Multicast Output 11]"
+              endId="Package\OverAll\SalePersonBonusFix13.Inputs[SQL Server Destination Input]"
+              name="Multicast Output 1"
+              startId="Package\OverAll\Multicast 7.Outputs[Multicast Output 1]" />
+            <path
+              refId="Package\OverAll.Paths[Multicast Output 1]"
+              endId="Package\OverAll\3 Fix Not NULL.Inputs[Derived Column Input]"
+              name="Multicast Output 1"
+              startId="Package\OverAll\3 Multicast.Outputs[Multicast Output 1]" />
+            <path
+              refId="Package\OverAll.Paths[Multicast Output 13]"
+              endId="Package\OverAll\Fix Not Null 1.Inputs[Derived Column Input]"
+              name="Multicast Output 1"
+              startId="Package\OverAll\Multicast 1.Outputs[Multicast Output 1]" />
             <path
               refId="Package\OverAll.Paths[Multicast Output 2]"
               endId="Package\OverAll\FixNull.Inputs[Derived Column Input]"
@@ -16310,34 +16706,34 @@ where [refTable].[ProductCategoryID] = ?</property>
               startId="Package\OverAll\Multicast 1.Outputs[Multicast Output 4]" />
             <path
               refId="Package\OverAll.Paths[OLE DB Source Output5]"
-              endId="Package\OverAll\Conditional Split.Inputs[Conditional Split Input]"
+              endId="Package\OverAll\Conditional Split 2.Inputs[Conditional Split Input]"
               name="OLE DB Source Output"
-              startId="Package\OverAll\Employee.Outputs[OLE DB Source Output]" />
+              startId="Package\OverAll\SalesPerson.Outputs[OLE DB Source Output]" />
             <path
               refId="Package\OverAll.Paths[OLE DB Source Output4]"
-              endId="Package\OverAll\Conditional Split 1.Inputs[Conditional Split Input]"
-              name="OLE DB Source Output"
-              startId="Package\OverAll\Person.Outputs[OLE DB Source Output]" />
-            <path
-              refId="Package\OverAll.Paths[OLE DB Source Output3]"
-              endId="Package\OverAll\1 Qty Not Null.Inputs[Conditional Split Input]"
-              name="OLE DB Source Output"
-              startId="Package\OverAll\SalesOrderDetail.Outputs[OLE DB Source Output]" />
-            <path
-              refId="Package\OverAll.Paths[OLE DB Source Output2]"
-              endId="Package\OverAll\2 Pct Not Null.Inputs[Conditional Split Input]"
-              name="OLE DB Source Output"
-              startId="Package\OverAll\SpecialOffer.Outputs[OLE DB Source Output]" />
-            <path
-              refId="Package\OverAll.Paths[OLE DB Source Output]"
               endId="Package\OverAll\3 OnlineFlag.Inputs[Conditional Split Input]"
               name="OLE DB Source Output"
               startId="Package\OverAll\SalesOrderHeader.Outputs[OLE DB Source Output]" />
             <path
-              refId="Package\OverAll.Paths[OLE DB Source Output1]"
-              endId="Package\OverAll\Conditional Split 2.Inputs[Conditional Split Input]"
+              refId="Package\OverAll.Paths[OLE DB Source Output3]"
+              endId="Package\OverAll\2 Pct Not Null.Inputs[Conditional Split Input]"
               name="OLE DB Source Output"
-              startId="Package\OverAll\SalesPerson.Outputs[OLE DB Source Output]" />
+              startId="Package\OverAll\SpecialOffer.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\OverAll.Paths[OLE DB Source Output2]"
+              endId="Package\OverAll\1 Qty Not Null.Inputs[Conditional Split Input]"
+              name="OLE DB Source Output"
+              startId="Package\OverAll\SalesOrderDetail.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\OverAll.Paths[OLE DB Source Output]"
+              endId="Package\OverAll\Conditional Split.Inputs[Conditional Split Input]"
+              name="OLE DB Source Output"
+              startId="Package\OverAll\Employee.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\OverAll.Paths[OLE DB Source Output1]"
+              endId="Package\OverAll\Conditional Split 1.Inputs[Conditional Split Input]"
+              name="OLE DB Source Output"
+              startId="Package\OverAll\Person.Outputs[OLE DB Source Output]" />
             <path
               refId="Package\OverAll.Paths[Order Qty &lt;0]"
               endId="Package\OverAll\OrderQtyLog14.Inputs[SQL Server Destination Input]"
@@ -16385,19 +16781,19 @@ where [refTable].[ProductCategoryID] = ?</property>
               startId="Package\OverAll\1 Qty Not Null.Outputs[Qty Not Null]" />
             <path
               refId="Package\OverAll.Paths[Union All Output 12]"
+              endId="Package\OverAll\16 Sale Online Flag.Inputs[Conditional Split Input]"
+              name="Union All Output 1"
+              startId="Package\OverAll\Union All 2.Outputs[Union All Output 1]" />
+            <path
+              refId="Package\OverAll.Paths[Union All Output 1]"
               endId="Package\OverAll\15 PctChecking.Inputs[Conditional Split Input]"
               name="Union All Output 1"
               startId="Package\OverAll\Union All 1.Outputs[Union All Output 1]" />
             <path
-              refId="Package\OverAll.Paths[Union All Output 1]"
+              refId="Package\OverAll.Paths[Union All Output 11]"
               endId="Package\OverAll\Derived Column.Inputs[Derived Column Input]"
               name="Union All Output 1"
               startId="Package\OverAll\Union All 7.Outputs[Union All Output 1]" />
-            <path
-              refId="Package\OverAll.Paths[Union All Output 11]"
-              endId="Package\OverAll\16 Sale Online Flag.Inputs[Conditional Split Input]"
-              name="Union All Output 1"
-              startId="Package\OverAll\Union All 2.Outputs[Union All Output 1]" />
             <path
               refId="Package\OverAll.Paths[Union All Output 13]"
               endId="Package\OverAll\14 Qty Checking.Inputs[Conditional Split Input]"
@@ -16497,21 +16893,33 @@ where [refTable].[ProductCategoryID] = ?</property>
         <NodeLayout
           Size="157,42"
           Id="Package\CreateDimCategory\ProductCategory"
-          TopLeft="102,60" />
+          TopLeft="801.5,24.5000000000001" />
         <EdgeLayout
           Id="Package\CreateDimCategory.Paths[OLE DB Source Output]"
-          TopLeft="178,102">
+          TopLeft="880,66.5000000000001">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,141"
+              EndConnector="30.5,90.4999999999999"
               Start="0,0"
-              End="0,133.5">
+              End="30.5,82.9999999999999">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,133.5" />
+                    End="0,41.2499999999999" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,41.2499999999999"
+                    Point2="0,45.2499999999999"
+                    Point3="4,45.2499999999999" />
+                  <mssgle:LineSegment
+                    End="26.5,45.2499999999999" />
+                  <mssgle:CubicBezierSegment
+                    Point1="26.5,45.2499999999999"
+                    Point2="30.5,45.2499999999999"
+                    Point3="30.5,49.2499999999999" />
+                  <mssgle:LineSegment
+                    End="30.5,82.9999999999999" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -16523,77 +16931,77 @@ where [refTable].[ProductCategoryID] = ?</property>
         <NodeLayout
           Size="132,42"
           Id="Package\CreateDimCategory\Multicast 3"
-          TopLeft="204.5,262.5" />
+          TopLeft="230,107.5" />
         <NodeLayout
           Size="137,42"
           Id="Package\CreateDimCategory\Fix Clothing"
-          TopLeft="136.5,361.5" />
+          TopLeft="5.5,209.5" />
         <NodeLayout
           Size="199,42"
           Id="Package\CreateDimCategory\Check Product Category"
-          TopLeft="5.5,58.5" />
+          TopLeft="350.5,5.5" />
         <EdgeLayout
           Id="Package\CreateDimCategory.Paths[Name is Clothing]"
-          TopLeft="73.1666666666702,100.5">
+          TopLeft="386.333333333333,47.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="197.333333333333,162"
+              EndConnector="-90.3333333333333,60"
               Start="0,0"
-              End="197.333333333333,154.5">
+              End="-90.3333333333333,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,61.5752741774675" />
+                    End="0,11.8866995073892" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,61.5752741774675"
-                    Point2="0,65.5752741774675"
-                    Point3="4,65.5752741774675" />
+                    Point1="0,11.8866995073892"
+                    Point2="0,15.8866995073892"
+                    Point3="-4,15.8866995073892" />
                   <mssgle:LineSegment
-                    End="193.333333333333,65.5752741774675" />
+                    End="-86.3333333333333,15.8866995073892" />
                   <mssgle:CubicBezierSegment
-                    Point1="193.333333333333,65.5752741774675"
-                    Point2="197.333333333333,65.5752741774675"
-                    Point3="197.333333333333,69.5752741774675" />
+                    Point1="-86.3333333333333,15.8866995073892"
+                    Point2="-90.3333333333333,15.8866995073892"
+                    Point3="-90.3333333333333,19.8866995073892" />
                   <mssgle:LineSegment
-                    End="197.333333333333,154.5" />
+                    End="-90.3333333333333,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="61.0486783854165,70.5752741774675,75.2359765625,11.6630859375"
+              BoundingBox="-82.7846549479167,20.8866995073892,75.2359765625,11.6630859375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\CreateDimCategory.Paths[Multicast Output 2]"
-          TopLeft="249.83333333333,304.5">
+          TopLeft="275.333333333333,149.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-34.3333333333335,57"
+              EndConnector="-201.333333333333,60"
               Start="0,0"
-              End="-34.3333333333335,49.5">
+              End="-201.333333333333,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,19.2095808383234" />
+                    End="0,20.4311377245509" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,19.2095808383234"
-                    Point2="0,23.2095808383234"
-                    Point3="-4,23.2095808383234" />
+                    Point1="0,20.4311377245509"
+                    Point2="0,24.4311377245509"
+                    Point3="-4,24.4311377245509" />
                   <mssgle:LineSegment
-                    End="-30.3333333333335,23.2095808383234" />
+                    End="-197.333333333333,24.4311377245509" />
                   <mssgle:CubicBezierSegment
-                    Point1="-30.3333333333335,23.2095808383234"
-                    Point2="-34.3333333333335,23.2095808383234"
-                    Point3="-34.3333333333335,27.2095808383234" />
+                    Point1="-197.333333333333,24.4311377245509"
+                    Point2="-201.333333333333,24.4311377245509"
+                    Point3="-201.333333333333,28.4311377245509" />
                   <mssgle:LineSegment
-                    End="-34.3333333333335,49.5" />
+                    End="-201.333333333333,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -16605,33 +17013,33 @@ where [refTable].[ProductCategoryID] = ?</property>
         <NodeLayout
           Size="132,42"
           Id="Package\CreateDimCategory\Union All 6"
-          TopLeft="16.5,433.5" />
+          TopLeft="384,311.5" />
         <EdgeLayout
           Id="Package\CreateDimCategory.Paths[Derived Column Output]"
-          TopLeft="205,403.5">
+          TopLeft="74,251.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-101.833333333333,30"
+              EndConnector="355.333333333333,60"
               Start="0,0"
-              End="-101.833333333333,22.5">
+              End="355.333333333333,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,13.7844311377245" />
+                    End="0,31.5688622754491" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,13.7844311377245"
-                    Point2="0,17.7844311377245"
-                    Point3="-4,17.7844311377245" />
+                    Point1="0,31.5688622754491"
+                    Point2="0,35.5688622754491"
+                    Point3="4,35.5688622754491" />
                   <mssgle:LineSegment
-                    End="-97.8333333333335,17.7844311377245" />
+                    End="351.333333333333,35.5688622754491" />
                   <mssgle:CubicBezierSegment
-                    Point1="-97.8333333333335,17.7844311377245"
-                    Point2="-101.833333333333,17.7844311377245"
-                    Point3="-101.833333333333,21.7844311377245" />
+                    Point1="351.333333333333,35.5688622754491"
+                    Point2="355.333333333333,35.5688622754491"
+                    Point3="355.333333333333,39.5688622754491" />
                   <mssgle:LineSegment
-                    End="-101.833333333333,22.5" />
+                    End="355.333333333333,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -16642,178 +17050,190 @@ where [refTable].[ProductCategoryID] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\CreateDimCategory.Paths[Clean Data]"
-          TopLeft="59.541666666667,100.5">
+          TopLeft="418.166666666667,47.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,333"
+              EndConnector="52.4999999999999,264"
               Start="0,0"
-              End="0,325.5">
+              End="52.4999999999999,256.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,325.5" />
+                    End="0,127.343186037876" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,127.343186037876"
+                    Point2="0,131.343186037876"
+                    Point3="4,131.343186037876" />
+                  <mssgle:LineSegment
+                    End="48.4999999999999,131.343186037876" />
+                  <mssgle:CubicBezierSegment
+                    Point1="48.4999999999999,131.343186037876"
+                    Point2="52.4999999999999,131.343186037876"
+                    Point3="52.4999999999999,135.343186037876" />
+                  <mssgle:LineSegment
+                    End="52.4999999999999,256.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-24.59587890625,157.87548828125,49.1917578125,9.7490234375"
+              BoundingBox="1.65412109374997,136.343186037876,49.1917578125,9.7490234375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <NodeLayout
           Size="186,42"
           Id="Package\CreateDimCategory\OLE DB Destination 1"
-          TopLeft="354,362" />
+          TopLeft="203,209.5" />
         <NodeLayout
           Size="186,42"
           Id="Package\CreateDimCategory\OLE DB Destination 2"
-          TopLeft="410,260" />
+          TopLeft="1005,107.5" />
         <NodeLayout
           Size="186,42"
           Id="Package\CreateDimCategory\OLE DB Destination 3"
-          TopLeft="329,5.5" />
+          TopLeft="758,107.5" />
         <NodeLayout
           Size="186,42"
           Id="Package\CreateDimCategory\OLE DB Destination 4"
-          TopLeft="473,79" />
+          TopLeft="511,107.5" />
         <EdgeLayout
           Id="Package\CreateDimCategory.Paths[ID less than 0]"
-          TopLeft="204.5,85.1666666666667">
+          TopLeft="450,47.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="268.5,14.8333333333333"
+              EndConnector="154,60"
               Start="0,0"
-              End="261,14.8333333333333">
+              End="154,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="109.311926605505,0" />
+                    End="0,26" />
                   <mssgle:CubicBezierSegment
-                    Point1="109.311926605505,0"
-                    Point2="113.311926605505,0"
-                    Point3="113.311926605505,4" />
+                    Point1="0,26"
+                    Point2="0,30"
+                    Point3="4,30" />
                   <mssgle:LineSegment
-                    End="113.311926605505,10.8333333333333" />
+                    End="150,30" />
                   <mssgle:CubicBezierSegment
-                    Point1="113.311926605505,10.8333333333333"
-                    Point2="113.311926605505,14.8333333333333"
-                    Point3="117.311926605505,14.8333333333333" />
+                    Point1="150,30"
+                    Point2="154,30"
+                    Point3="154,34" />
                   <mssgle:LineSegment
-                    End="261,14.8333333333333" />
+                    End="154,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="81.9521219180046,-15.7490234375,62.719609375,9.7490234375"
+              BoundingBox="45.6401953125,35,62.719609375,9.7490234375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\CreateDimCategory.Paths[ID is NULL]"
-          TopLeft="204.5,73.8333333333333">
+          TopLeft="481.833333333333,47.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="124.5,-47.3333333333333"
+              EndConnector="369.166666666667,59.9999999999999"
               Start="0,0"
-              End="117,-47.3333333333333">
+              End="369.166666666667,52.4999999999999">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="48.5412844036697,0" />
+                    End="0,20.2871385842472" />
                   <mssgle:CubicBezierSegment
-                    Point1="48.5412844036697,0"
-                    Point2="52.5412844036697,0"
-                    Point3="52.5412844036697,-4" />
+                    Point1="0,20.2871385842472"
+                    Point2="0,24.2871385842472"
+                    Point3="4,24.2871385842472" />
                   <mssgle:LineSegment
-                    End="52.5412844036697,-43.3333333333333" />
+                    End="365.166666666667,24.2871385842472" />
                   <mssgle:CubicBezierSegment
-                    Point1="52.5412844036697,-43.3333333333333"
-                    Point2="52.5412844036697,-47.3333333333333"
-                    Point3="56.5412844036697,-47.3333333333333" />
+                    Point1="365.166666666667,24.2871385842472"
+                    Point2="369.166666666667,24.2871385842472"
+                    Point3="369.166666666667,28.2871385842472" />
                   <mssgle:LineSegment
-                    End="117,-47.3333333333333" />
+                    End="369.166666666667,52.4999999999999" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="28.4277492474197,1,48.2270703125,9.470703125"
+              BoundingBox="160.469798177083,29.2871385842472,48.2270703125,9.470703125"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\CreateDimCategory.Paths[NAME is NULL]"
-          TopLeft="152.75,100.5">
+          TopLeft="513.666666666667,47.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="350.25,159.5"
+              EndConnector="584.333333333333,59.9999999999999"
               Start="0,0"
-              End="350.25,152">
+              End="584.333333333333,52.4999999999999">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,50.5727272727273" />
+                    End="0,11.8866995073891" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,50.5727272727273"
-                    Point2="0,54.5727272727273"
-                    Point3="4,54.5727272727273" />
+                    Point1="0,11.8866995073891"
+                    Point2="0,15.8866995073891"
+                    Point3="4,15.8866995073891" />
                   <mssgle:LineSegment
-                    End="346.25,54.5727272727273" />
+                    End="580.333333333333,15.8866995073891" />
                   <mssgle:CubicBezierSegment
-                    Point1="346.25,54.5727272727273"
-                    Point2="350.25,54.5727272727273"
-                    Point3="350.25,58.5727272727273" />
+                    Point1="580.333333333333,15.8866995073891"
+                    Point2="584.333333333333,15.8866995073891"
+                    Point3="584.333333333333,19.8866995073891" />
                   <mssgle:LineSegment
-                    End="350.25,152" />
+                    End="584.333333333333,52.4999999999999" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="143.41306640625,59.5727272727273,63.4238671875,9.470703125"
+              BoundingBox="260.454733072917,20.8866995073891,63.4238671875,9.470703125"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\CreateDimCategory.Paths[Multicast Output 3]"
-          TopLeft="291.166666666667,304.5">
+          TopLeft="316.666666666667,149.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="155.833333333333,57.5"
+              EndConnector="-20.6666666666666,60"
               Start="0,0"
-              End="155.833333333333,50">
+              End="-20.6666666666666,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,19.4131736526946" />
+                    End="0,20.4311377245509" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,19.4131736526946"
-                    Point2="0,23.4131736526946"
-                    Point3="4,23.4131736526946" />
+                    Point1="0,20.4311377245509"
+                    Point2="0,24.4311377245509"
+                    Point3="-4,24.4311377245509" />
                   <mssgle:LineSegment
-                    End="151.833333333333,23.4131736526946" />
+                    End="-16.6666666666666,24.4311377245509" />
                   <mssgle:CubicBezierSegment
-                    Point1="151.833333333333,23.4131736526946"
-                    Point2="155.833333333333,23.4131736526946"
-                    Point3="155.833333333333,27.4131736526946" />
+                    Point1="-16.6666666666666,24.4311377245509"
+                    Point2="-20.6666666666666,24.4311377245509"
+                    Point3="-20.6666666666666,28.4311377245509" />
                   <mssgle:LineSegment
-                    End="155.833333333333,50" />
+                    End="-20.6666666666666,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -16827,10 +17247,10 @@ where [refTable].[ProductCategoryID] = ?</property>
           ParentId="Package\CreateDimCategory"
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="771,562"
-          Size="771,605"
+          PanelSize="1196,408"
+          Size="1196,452"
           Id="139f924e-44f5-4afb-8928-2983ac4e3c7b"
-          TopLeft="69.5,141.5">
+          TopLeft="461,108.5">
           <GroupLayout.ChildrenIds>
             <s:String>Package\CreateDimCategory\Multicast 3</s:String>
             <s:String>Package\CreateDimCategory\Fix Clothing</s:String>
@@ -16850,36 +17270,32 @@ where [refTable].[ProductCategoryID] = ?</property>
             <s:String>Package\CreateDimCategory.Paths[Multicast Output 3]</s:String>
           </GroupLayout.ChildrenIds>
         </GroupLayout>
-        <NodeLayout
-          Size="177,42"
-          Id="Package\CreateDimCategory\OLE DB Destination"
-          TopLeft="151,766" />
         <EdgeLayout
           Id="Package\CreateDimCategory.Paths[Union All Output 1]"
-          TopLeft="152,661">
+          TopLeft="911,463">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="87.5,105"
+              EndConnector="1119,-366"
               Start="0,0"
-              End="87.5,97.5">
+              End="1119,-358.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,48.5" />
+                    End="0,-179" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,48.5"
-                    Point2="0,52.5"
-                    Point3="4,52.5" />
+                    Point1="0,-179"
+                    Point2="0,-183"
+                    Point3="4,-183" />
                   <mssgle:LineSegment
-                    End="83.5,52.5" />
+                    End="1115,-183" />
                   <mssgle:CubicBezierSegment
-                    Point1="83.5,52.5"
-                    Point2="87.5,52.5"
-                    Point3="87.5,56.5" />
+                    Point1="1115,-183"
+                    Point2="1119,-183"
+                    Point3="1119,-187" />
                   <mssgle:LineSegment
-                    End="87.5,97.5" />
+                    End="1119,-358.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -16888,9 +17304,192 @@ where [refTable].[ProductCategoryID] = ?</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <NodeLayout
+          Size="216,42"
+          Id="Package\CreateDimCategory\Slowly Changing Dimension"
+          TopLeft="210,5.5" />
+        <NodeLayout
+          Size="165,42"
+          Id="Package\CreateDimCategory\Insert Destination"
+          TopLeft="5.5,312.5" />
+        <EdgeLayout
+          Id="Package\CreateDimCategory.Paths[New Output]"
+          TopLeft="266,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-178,265"
+              Start="0,0"
+              End="-178,257.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,86.4878048780489" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,86.4878048780489"
+                    Point2="0,90.4878048780489"
+                    Point3="-4,90.4878048780489" />
+                  <mssgle:LineSegment
+                    End="-174,90.4878048780489" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-174,90.4878048780489"
+                    Point2="-178,90.4878048780489"
+                    Point3="-178,94.4878048780489" />
+                  <mssgle:LineSegment
+                    End="-178,257.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-116.09138671875,95.4878048780489,54.1827734375,11.43359375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="173,42"
+          Id="Package\CreateDimCategory\OLE DB Command"
+          TopLeft="231.5,312.5" />
+        <EdgeLayout
+          Id="Package\CreateDimCategory.Paths[Inferred Member Updates Output]"
+          TopLeft="318,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,265"
+              Start="0,0"
+              End="0,257.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,257.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-74.40298828125,122.9208984375,148.8059765625,11.658203125"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="182,42"
+          Id="Package\CreateDimCategory\OLE DB Command 1"
+          TopLeft="465,312.5" />
+        <EdgeLayout
+          Id="Package\CreateDimCategory.Paths[Changing Attribute Updates Output]"
+          TopLeft="370,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="186,265"
+              Start="0,0"
+              End="186,257.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,86.4878048780488" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,86.4878048780488"
+                    Point2="0,90.4878048780488"
+                    Point3="4,90.4878048780488" />
+                  <mssgle:LineSegment
+                    End="182,90.4878048780488" />
+                  <mssgle:CubicBezierSegment
+                    Point1="182,90.4878048780488"
+                    Point2="186,90.4878048780488"
+                    Point3="186,94.4878048780488" />
+                  <mssgle:LineSegment
+                    End="186,257.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="14.46609375,95.4878048780488,157.0678125,11.6630859375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <GroupLayout
+          Text="Group 2"
+          ParentId="Package\CreateDimCategory"
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="652,410"
+          Size="652,453"
+          Id="93eb9804-73c6-4a39-827d-6b8ec5dffd07"
+          TopLeft="1712,5.5">
+          <GroupLayout.ChildrenIds>
+            <s:String>Package\CreateDimCategory\Slowly Changing Dimension</s:String>
+            <s:String>Package\CreateDimCategory\Insert Destination</s:String>
+            <s:String>Package\CreateDimCategory.Paths[New Output]</s:String>
+            <s:String>Package\CreateDimCategory\OLE DB Command</s:String>
+            <s:String>Package\CreateDimCategory.Paths[Inferred Member Updates Output]</s:String>
+            <s:String>Package\CreateDimCategory\OLE DB Command 1</s:String>
+            <s:String>Package\CreateDimCategory.Paths[Changing Attribute Updates Output]</s:String>
+          </GroupLayout.ChildrenIds>
+        </GroupLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\CreateDimCategory\OLE DB Destination 1">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\CreateDimCategory\OLE DB Destination 3">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\CreateDimCategory\OLE DB Destination 4">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\CreateDimCategory\OLE DB Destination 2">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
   <TaskHost
     design-time-name="Package\CreateDimProduct">
     <LayoutInfo>
@@ -17712,13 +18311,33 @@ where [refTable].[ProductCategoryID] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\OverAll.Paths[Union All Output 12]"
+          TopLeft="1277.5,455">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,145"
+              Start="0,0"
+              End="0,137.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,137.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\OverAll.Paths[Union All Output 1]"
           TopLeft="815,452">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -17748,181 +18367,11 @@ where [refTable].[ProductCategoryID] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\OverAll.Paths[Union All Output 11]"
-          TopLeft="1277.5,455">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,145"
-              Start="0,0"
-              End="0,137.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,137.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\OverAll.Paths[OLE DB Source Output5]"
-          TopLeft="3644.5,102">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="61,177"
-              Start="0,0"
-              End="61,169.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,84.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,84.5"
-                    Point2="0,88.5"
-                    Point3="4,88.5" />
-                  <mssgle:LineSegment
-                    End="57,88.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="57,88.5"
-                    Point2="61,88.5"
-                    Point3="61,92.5" />
-                  <mssgle:LineSegment
-                    End="61,169.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\OverAll.Paths[OLE DB Source Output4]"
-          TopLeft="4286.5,103">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-10.5,102"
-              Start="0,0"
-              End="-10.5,94.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,47" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,47"
-                    Point2="0,51"
-                    Point3="-4,51" />
-                  <mssgle:LineSegment
-                    End="-6.5,51" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-6.5,51"
-                    Point2="-10.5,51"
-                    Point3="-10.5,55" />
-                  <mssgle:LineSegment
-                    End="-10.5,94.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\OverAll.Paths[OLE DB Source Output3]"
-          TopLeft="194,144.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="10.5,54.5"
-              Start="0,0"
-              End="10.5,47">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,23.25" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,23.25"
-                    Point2="0,27.25"
-                    Point3="4,27.25" />
-                  <mssgle:LineSegment
-                    End="6.5,27.25" />
-                  <mssgle:CubicBezierSegment
-                    Point1="6.5,27.25"
-                    Point2="10.5,27.25"
-                    Point3="10.5,31.25" />
-                  <mssgle:LineSegment
-                    End="10.5,47" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\OverAll.Paths[OLE DB Source Output2]"
-          TopLeft="795.5,137">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-55,60"
-              Start="0,0"
-              End="-55,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,26" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,26"
-                    Point2="0,30"
-                    Point3="-4,30" />
-                  <mssgle:LineSegment
-                    End="-51,30" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-51,30"
-                    Point2="-55,30"
-                    Point3="-55,34" />
-                  <mssgle:LineSegment
-                    End="-55,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\OverAll.Paths[OLE DB Source Output1]"
           TopLeft="4863.97222222222,101">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -17940,13 +18389,11 @@ where [refTable].[ProductCategoryID] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\OverAll.Paths[OLE DB Source Output]"
+          Id="Package\OverAll.Paths[OLE DB Source Output4]"
           TopLeft="1328.5,142">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -17976,9 +18423,143 @@ where [refTable].[ProductCategoryID] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\OverAll.Paths[OLE DB Source Output3]"
+          TopLeft="795.5,137">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-55,60"
+              Start="0,0"
+              End="-55,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26"
+                    Point2="0,30"
+                    Point3="-4,30" />
+                  <mssgle:LineSegment
+                    End="-51,30" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-51,30"
+                    Point2="-55,30"
+                    Point3="-55,34" />
+                  <mssgle:LineSegment
+                    End="-55,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\OverAll.Paths[OLE DB Source Output2]"
+          TopLeft="194,144.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="10.5,54.5"
+              Start="0,0"
+              End="10.5,47">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.25" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,23.25"
+                    Point2="0,27.25"
+                    Point3="4,27.25" />
+                  <mssgle:LineSegment
+                    End="6.5,27.25" />
+                  <mssgle:CubicBezierSegment
+                    Point1="6.5,27.25"
+                    Point2="10.5,27.25"
+                    Point3="10.5,31.25" />
+                  <mssgle:LineSegment
+                    End="10.5,47" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\OverAll.Paths[OLE DB Source Output1]"
+          TopLeft="4286.5,103">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-10.5,102"
+              Start="0,0"
+              End="-10.5,94.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,47" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,47"
+                    Point2="0,51"
+                    Point3="-4,51" />
+                  <mssgle:LineSegment
+                    End="-6.5,51" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-6.5,51"
+                    Point2="-10.5,51"
+                    Point3="-10.5,55" />
+                  <mssgle:LineSegment
+                    End="-10.5,94.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\OverAll.Paths[OLE DB Source Output]"
+          TopLeft="3644.5,102">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="61,177"
+              Start="0,0"
+              End="61,169.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,84.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,84.5"
+                    Point2="0,88.5"
+                    Point3="4,88.5" />
+                  <mssgle:LineSegment
+                    End="57,88.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="57,88.5"
+                    Point2="61,88.5"
+                    Point3="61,92.5" />
+                  <mssgle:LineSegment
+                    End="61,169.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <NodeLayout
@@ -18064,7 +18645,7 @@ where [refTable].[ProductCategoryID] = ?</property>
           Id="Package\OverAll\Fix Not Null"
           TopLeft="171.5,110.5" />
         <EdgeLayout
-          Id="Package\OverAll.Paths[Multicast Output 11]"
+          Id="Package\OverAll.Paths[Multicast Output 15]"
           TopLeft="222.833333333333,85.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -18094,13 +18675,11 @@ where [refTable].[ProductCategoryID] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\OverAll.Paths[Derived Column Output2]"
+          Id="Package\OverAll.Paths[Derived Column Output3]"
           TopLeft="239.5,152.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -18130,9 +18709,7 @@ where [refTable].[ProductCategoryID] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <NodeLayout
@@ -18170,9 +18747,7 @@ where [refTable].[ProductCategoryID] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <GroupLayout
@@ -18191,8 +18766,8 @@ where [refTable].[ProductCategoryID] = ?</property>
             <s:String>Package\OverAll\Multicast</s:String>
             <s:String>Package\OverAll.Paths[Qty Is Null]</s:String>
             <s:String>Package\OverAll\Fix Not Null</s:String>
-            <s:String>Package\OverAll.Paths[Multicast Output 11]</s:String>
-            <s:String>Package\OverAll.Paths[Derived Column Output2]</s:String>
+            <s:String>Package\OverAll.Paths[Multicast Output 15]</s:String>
+            <s:String>Package\OverAll.Paths[Derived Column Output3]</s:String>
             <s:String>Package\OverAll\OrderQtyLog_1</s:String>
             <s:String>Package\OverAll.Paths[Multicast Output 23]</s:String>
           </GroupLayout.ChildrenIds>
@@ -18299,7 +18874,7 @@ where [refTable].[ProductCategoryID] = ?</property>
           Id="Package\OverAll\Fix Not Null 1"
           TopLeft="171.5,110.5" />
         <EdgeLayout
-          Id="Package\OverAll.Paths[Multicast Output 16]"
+          Id="Package\OverAll.Paths[Multicast Output 13]"
           TopLeft="222.833333333333,85.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -18329,9 +18904,7 @@ where [refTable].[ProductCategoryID] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <NodeLayout
@@ -18369,9 +18942,7 @@ where [refTable].[ProductCategoryID] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <NodeLayout
@@ -18379,7 +18950,7 @@ where [refTable].[ProductCategoryID] = ?</property>
           Id="Package\OverAll\Union All 1"
           TopLeft="91,219" />
         <EdgeLayout
-          Id="Package\OverAll.Paths[Derived Column Output3]"
+          Id="Package\OverAll.Paths[Derived Column Output2]"
           TopLeft="239.5,152.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -18409,9 +18980,7 @@ where [refTable].[ProductCategoryID] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -18464,11 +19033,11 @@ where [refTable].[ProductCategoryID] = ?</property>
             <s:String>Package\OverAll\Multicast 1</s:String>
             <s:String>Package\OverAll.Paths[Qty Is Null1]</s:String>
             <s:String>Package\OverAll\Fix Not Null 1</s:String>
-            <s:String>Package\OverAll.Paths[Multicast Output 16]</s:String>
+            <s:String>Package\OverAll.Paths[Multicast Output 13]</s:String>
             <s:String>Package\OverAll\OrderQtyLog2</s:String>
             <s:String>Package\OverAll.Paths[Multicast Output 4]</s:String>
             <s:String>Package\OverAll\Union All 1</s:String>
-            <s:String>Package\OverAll.Paths[Derived Column Output3]</s:String>
+            <s:String>Package\OverAll.Paths[Derived Column Output2]</s:String>
             <s:String>Package\OverAll.Paths[Pct Not Null1]</s:String>
           </GroupLayout.ChildrenIds>
         </GroupLayout>
@@ -18532,7 +19101,7 @@ where [refTable].[ProductCategoryID] = ?</property>
           Id="Package\OverAll\3 Fix Not NULL"
           TopLeft="171.5,110.5" />
         <EdgeLayout
-          Id="Package\OverAll.Paths[Multicast Output 17]"
+          Id="Package\OverAll.Paths[Multicast Output 1]"
           TopLeft="222.833333333333,85.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -18562,9 +19131,7 @@ where [refTable].[ProductCategoryID] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -18638,7 +19205,7 @@ where [refTable].[ProductCategoryID] = ?</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\OverAll.Paths[Derived Column Output4]"
+          Id="Package\OverAll.Paths[Derived Column Output1]"
           TopLeft="239.5,152.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -18668,9 +19235,7 @@ where [refTable].[ProductCategoryID] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <NodeLayout
@@ -18708,9 +19273,7 @@ where [refTable].[ProductCategoryID] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <GroupLayout
@@ -18726,11 +19289,11 @@ where [refTable].[ProductCategoryID] = ?</property>
             <s:String>Package\OverAll\3 OnlineFlag</s:String>
             <s:String>Package\OverAll\3 Multicast</s:String>
             <s:String>Package\OverAll\3 Fix Not NULL</s:String>
-            <s:String>Package\OverAll.Paths[Multicast Output 17]</s:String>
+            <s:String>Package\OverAll.Paths[Multicast Output 1]</s:String>
             <s:String>Package\OverAll.Paths[Flag is NULL]</s:String>
             <s:String>Package\OverAll\Union All 2</s:String>
             <s:String>Package\OverAll.Paths[Pct Not Null]</s:String>
-            <s:String>Package\OverAll.Paths[Derived Column Output4]</s:String>
+            <s:String>Package\OverAll.Paths[Derived Column Output1]</s:String>
             <s:String>Package\OverAll\SaleOnlineFlagLog3</s:String>
             <s:String>Package\OverAll.Paths[Multicast Output 22]</s:String>
           </GroupLayout.ChildrenIds>
@@ -18788,7 +19351,7 @@ where [refTable].[ProductCategoryID] = ?</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\OverAll.Paths[Derived Column Output5]"
+          Id="Package\OverAll.Paths[Derived Column Output]"
           TopLeft="222,132.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -18812,9 +19375,7 @@ where [refTable].[ProductCategoryID] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -18854,7 +19415,7 @@ where [refTable].[ProductCategoryID] = ?</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\OverAll.Paths[Multicast Output 13]"
+          Id="Package\OverAll.Paths[Multicast Output 17]"
           TopLeft="317,76">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -18884,9 +19445,7 @@ where [refTable].[ProductCategoryID] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <NodeLayout
@@ -18924,9 +19483,7 @@ where [refTable].[ProductCategoryID] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <GroupLayout
@@ -18944,9 +19501,9 @@ where [refTable].[ProductCategoryID] = ?</property>
             <s:String>Package\OverAll\Multicast SalesFlag</s:String>
             <s:String>Package\OverAll\Union All 3</s:String>
             <s:String>Package\OverAll.Paths[Clean Output]</s:String>
-            <s:String>Package\OverAll.Paths[Derived Column Output5]</s:String>
+            <s:String>Package\OverAll.Paths[Derived Column Output]</s:String>
             <s:String>Package\OverAll.Paths[Flag is false]</s:String>
-            <s:String>Package\OverAll.Paths[Multicast Output 13]</s:String>
+            <s:String>Package\OverAll.Paths[Multicast Output 17]</s:String>
             <s:String>Package\OverAll\SaleOnlineFlagLog16</s:String>
             <s:String>Package\OverAll.Paths[Multicast Output 24]</s:String>
           </GroupLayout.ChildrenIds>
@@ -19192,7 +19749,7 @@ where [refTable].[ProductCategoryID] = ?</property>
           Id="Package\OverAll\Union All 7"
           TopLeft="19.5,523.5" />
         <EdgeLayout
-          Id="Package\OverAll.Paths[Multicast Output 12]"
+          Id="Package\OverAll.Paths[Multicast Output 14]"
           TopLeft="231.833333333333,247.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -19222,9 +19779,7 @@ where [refTable].[ProductCategoryID] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -19258,9 +19813,7 @@ where [refTable].[ProductCategoryID] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <NodeLayout
@@ -19304,7 +19857,7 @@ where [refTable].[ProductCategoryID] = ?</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\OverAll.Paths[Union All Output 1]"
+          Id="Package\OverAll.Paths[Union All Output 11]"
           TopLeft="85,565.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -19322,9 +19875,7 @@ where [refTable].[ProductCategoryID] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -19358,9 +19909,7 @@ where [refTable].[ProductCategoryID] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <NodeLayout
@@ -19368,7 +19917,7 @@ where [refTable].[ProductCategoryID] = ?</property>
           Id="Package\OverAll\EmployeeHireDateAllow25"
           TopLeft="196.5,507.5" />
         <EdgeLayout
-          Id="Package\OverAll.Paths[Multicast Output 1]"
+          Id="Package\OverAll.Paths[Multicast Output 16]"
           TopLeft="203.166666666667,408.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -19398,9 +19947,7 @@ where [refTable].[ProductCategoryID] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <GroupLayout
@@ -19428,14 +19975,14 @@ where [refTable].[ProductCategoryID] = ?</property>
             <s:String>Package\OverAll.Paths[HireDate in 2019]</s:String>
             <s:String>Package\OverAll\EmployeeJobTitleAllow24</s:String>
             <s:String>Package\OverAll\Union All 7</s:String>
-            <s:String>Package\OverAll.Paths[Multicast Output 12]</s:String>
+            <s:String>Package\OverAll.Paths[Multicast Output 14]</s:String>
             <s:String>Package\OverAll.Paths[Multicast Output 21]</s:String>
             <s:String>Package\OverAll\Derived Column</s:String>
             <s:String>Package\OverAll.Paths[Clean Data]</s:String>
-            <s:String>Package\OverAll.Paths[Union All Output 1]</s:String>
+            <s:String>Package\OverAll.Paths[Union All Output 11]</s:String>
             <s:String>Package\OverAll.Paths[Multicast Output 25]</s:String>
             <s:String>Package\OverAll\EmployeeHireDateAllow25</s:String>
-            <s:String>Package\OverAll.Paths[Multicast Output 1]</s:String>
+            <s:String>Package\OverAll.Paths[Multicast Output 16]</s:String>
           </GroupLayout.ChildrenIds>
         </GroupLayout>
         <NodeLayout
@@ -19625,9 +20172,7 @@ where [refTable].[ProductCategoryID] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <NodeLayout
@@ -19665,9 +20210,7 @@ where [refTable].[ProductCategoryID] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <GroupLayout
@@ -19824,7 +20367,7 @@ where [refTable].[ProductCategoryID] = ?</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\OverAll.Paths[Multicast Output 15]"
+          Id="Package\OverAll.Paths[Multicast Output 11]"
           TopLeft="113.5,146.055555555556">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -19854,9 +20397,7 @@ where [refTable].[ProductCategoryID] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -19878,13 +20419,11 @@ where [refTable].[ProductCategoryID] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\OverAll.Paths[Derived Column Output]"
+          Id="Package\OverAll.Paths[Derived Column Output5]"
           TopLeft="89,341.055555555556">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -19914,13 +20453,11 @@ where [refTable].[ProductCategoryID] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\OverAll.Paths[Multicast Output 14]"
+          Id="Package\OverAll.Paths[Multicast Output 12]"
           TopLeft="369.5,149.055555555556">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -19950,9 +20487,7 @@ where [refTable].[ProductCategoryID] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -19986,13 +20521,11 @@ where [refTable].[ProductCategoryID] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\OverAll.Paths[Derived Column Output1]"
+          Id="Package\OverAll.Paths[Derived Column Output4]"
           TopLeft="410,346.055555555556">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -20022,9 +20555,7 @@ where [refTable].[ProductCategoryID] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <GroupLayout
@@ -20048,12 +20579,12 @@ where [refTable].[ProductCategoryID] = ?</property>
             <s:String>Package\OverAll.Paths[Bonus NULL]</s:String>
             <s:String>Package\OverAll.Paths[Bonus &lt; 0]</s:String>
             <s:String>Package\OverAll.Paths[Clean Data2]</s:String>
-            <s:String>Package\OverAll.Paths[Multicast Output 15]</s:String>
+            <s:String>Package\OverAll.Paths[Multicast Output 11]</s:String>
             <s:String>Package\OverAll.Paths[Multicast Output 2]</s:String>
-            <s:String>Package\OverAll.Paths[Derived Column Output]</s:String>
-            <s:String>Package\OverAll.Paths[Multicast Output 14]</s:String>
+            <s:String>Package\OverAll.Paths[Derived Column Output5]</s:String>
+            <s:String>Package\OverAll.Paths[Multicast Output 12]</s:String>
             <s:String>Package\OverAll.Paths[Multicast Output 27]</s:String>
-            <s:String>Package\OverAll.Paths[Derived Column Output1]</s:String>
+            <s:String>Package\OverAll.Paths[Derived Column Output4]</s:String>
           </GroupLayout.ChildrenIds>
         </GroupLayout>
       </GraphLayout>
@@ -20282,67 +20813,46 @@ where [refTable].[ProductCategoryID] = ?</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\CreateDimCategory\OLE DB Destination">
+    design-time-name="Package\CreateDimCategory\Slowly Changing Dimension">
     <Properties>
       <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
+        <Name>SCDMetadata</Name>
         <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\CreateDimCategory\OLE DB Destination 1">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\CreateDimCategory\OLE DB Destination 2">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\CreateDimCategory\OLE DB Destination 3">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\CreateDimCategory\OLE DB Destination 4">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
+          type="q2:string">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SCDWizardMetadata xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionID&gt;{3A9E83D6-0E49-4BB6-8B04-1DFA054A5B25}&lt;/ConnectionID&gt;
+  &lt;TableName&gt;[dbo].[dimCategory]&lt;/TableName&gt;
+  &lt;InputToColumnsCollection&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;Union All 6.Outputs[Union All Output 1].Columns[ProductCategoryID]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;categoryID&lt;/ColumnName&gt;
+      &lt;KeyType&gt;BusinessKey&lt;/KeyType&gt;
+      &lt;ChangeType&gt;None&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;Union All 6.Outputs[Union All Output 1].Columns[Name]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;name&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;ChangingAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+  &lt;/InputToColumnsCollection&gt;
+  &lt;GeneratedComponentsIdentificationStrings&gt;
+    &lt;anyType xsi:type="xsd:string"&gt;Insert Destination&lt;/anyType&gt;
+    &lt;anyType xsi:type="xsd:string"&gt;OLE DB Command&lt;/anyType&gt;
+    &lt;anyType xsi:type="xsd:string"&gt;OLE DB Command 1&lt;/anyType&gt;
+  &lt;/GeneratedComponentsIdentificationStrings&gt;
+  &lt;FailFixedAttribute&gt;false&lt;/FailFixedAttribute&gt;
+  &lt;FailChangeAttribute&gt;false&lt;/FailChangeAttribute&gt;
+  &lt;UseStartEndDate&gt;false&lt;/UseStartEndDate&gt;
+  &lt;CurrentIndicatorColumn /&gt;
+  &lt;InferredIndicatorColumn /&gt;
+  &lt;ValueCurrent /&gt;
+  &lt;ValueExpired /&gt;
+  &lt;StartDateColumn /&gt;
+  &lt;EndDateColumn /&gt;
+  &lt;DateVariable /&gt;
+  &lt;EnableInferredSupport&gt;true&lt;/EnableInferredSupport&gt;
+&lt;/SCDWizardMetadata&gt;</Value>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
