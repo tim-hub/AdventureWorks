@@ -108,18 +108,18 @@ print 'Creating all dimension tables required'
 
 
 --dimCategory table
-CREATE TABLE dimCategory
-(
-	CategoryKey			int				IDENTITY(1,1) PRIMARY KEY,
-	categoryID			int       NOT NULL DEFAULT -1,
-	name			nchar(50)       NOT NULL DEFAULT '',
-);
+--CREATE TABLE dimCategory
+--(
+--	CategoryKey			int				IDENTITY(1,1) PRIMARY KEY,
+--	categoryID			int       NOT NULL DEFAULT -1,
+--	name			nchar(50)       NOT NULL DEFAULT '',
+--);
 
 -- --dimProduct table
 CREATE TABLE dimProduct
 (
 	ProductKey			int				IDENTITY(1,1) PRIMARY KEY,
-	CategoryKey			int       FOREIGN KEY REFERENCES dimCategory(CategoryKey),
+--	CategoryKey			int       FOREIGN KEY REFERENCES dimCategory(CategoryKey),
 	productID			  int       NOT NULL DEFAULT -1,
   subCategoryName	  nchar(50)         NOT NULL DEFAULT '',
 );
@@ -129,7 +129,7 @@ CREATE TABLE dimEmployee
 (
 	EmployeeKey			int				IDENTITY(1,1) PRIMARY KEY,
 	employeeID			int       NOT NULL DEFAULT -1,
-  name			nchar(50)       NOT NULL DEFAULT '',
+  name			nchar(152)       NOT NULL DEFAULT '',
   personType			nchar(2)       NOT NULL DEFAULT '',
   jobTitle			  nchar(50)       NOT NULL DEFAULT '',
   hireDate			  date       NOT NULL DEFAULT '9999-12-31',
@@ -164,7 +164,7 @@ CREATE TABLE dimStore
 	StoreKey			int				IDENTITY(1,1) PRIMARY KEY,
   -- AddressKey			int       FOREIGN KEY REFERENCES dimAddress(AddressKey),
 	businessEntityID			int       NOT NULL DEFAULT -1,
-  name			nchar(152)       NOT NULL DEFAULT '',
+  name			nchar(50)       NOT NULL DEFAULT '',
 );
 
 print 'Creating a fact table required'
