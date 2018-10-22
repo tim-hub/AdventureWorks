@@ -118,7 +118,7 @@ CREATE TABLE dimCategory
 CREATE TABLE dimProduct
 (
 	ProductKey			int				IDENTITY(1,1) PRIMARY KEY,
-	CategoryKey			int       FOREIGN KEY REFERENCES dimCategory(CategoryKey),
+	CategoryKey			int       NOT NULL, FOREIGN KEY REFERENCES dimCategory(CategoryKey),
 	productID			  int       NOT NULL DEFAULT -1,
   subCategoryName	  nchar(50)         NOT NULL DEFAULT '',
 );
@@ -136,21 +136,21 @@ CREATE TABLE dimEmployee
 );
 
 
-CREATE TABLE dimAddress
-(
-	AddressKey			int				IDENTITY(1,1) PRIMARY KEY,
-	addressID			int       NOT NULL DEFAULT -1,
-  addressLine1			nchar(60)       NOT NULL DEFAULT '',
-  city			  nchar(30)       NOT NULL DEFAULT '',
-  postcode			  nchar(15)       NOT NULL DEFAULT '',
-  stateProvince			  nchar(50)       NOT NULL DEFAULT '',
-  country			  nchar(50)       NOT NULL DEFAULT '',
-);
+-- CREATE TABLE dimAddress
+-- (
+-- 	AddressKey			int				IDENTITY(1,1) PRIMARY KEY,
+-- 	addressID			int       NOT NULL DEFAULT -1,
+--   addressLine1			nchar(60)       NOT NULL DEFAULT '',
+--   city			  nchar(30)       NOT NULL DEFAULT '',
+--   postcode			  nchar(15)       NOT NULL DEFAULT '',
+--   stateProvince			  nchar(50)       NOT NULL DEFAULT '',
+--   country			  nchar(50)       NOT NULL DEFAULT '',
+-- );
 
 CREATE TABLE dimCustomer
 (
 	CustomerKey			int				IDENTITY(1,1) PRIMARY KEY,
-  AddressKey			int       FOREIGN KEY REFERENCES dimAddress(AddressKey),
+  -- AddressKey			int       FOREIGN KEY REFERENCES dimAddress(AddressKey),
 	customerID			int       NOT NULL DEFAULT -1,
   title			nchar(8)       NOT NULL DEFAULT '',
   name			nchar(150)       NOT NULL DEFAULT '',
@@ -161,7 +161,7 @@ CREATE TABLE dimCustomer
 CREATE TABLE dimStore
 (
 	StoreKey			int				IDENTITY(1,1) PRIMARY KEY,
-  AddressKey			int       FOREIGN KEY REFERENCES dimAddress(AddressKey),
+  -- AddressKey			int       FOREIGN KEY REFERENCES dimAddress(AddressKey),
 	businessEntityID			int       NOT NULL DEFAULT -1,
   name			nchar(150)       NOT NULL DEFAULT '',
 );
@@ -170,14 +170,14 @@ print 'Creating a fact table required'
 
 CREATE TABLE factSales
 (
-  CustomerKey			int				FOREIGN KEY REFERENCES dimCustomer(CustomerKey),
-	StoreKey		    int				FOREIGN KEY REFERENCES dimStore(StoreKey),
-  EmployeeKey		  int				FOREIGN KEY REFERENCES dimEmployee(EmployeeKey),
-	OrderTimeKey		int				FOREIGN KEY REFERENCES dimTime(TimeKey),
-	ProductKey			int				FOREIGN KEY REFERENCES dimProduct(ProductKey),
+  CustomerKey			int				NOT NULL, FOREIGN KEY REFERENCES dimCustomer(CustomerKey),
+	StoreKey		    int				NOT NULL, FOREIGN KEY REFERENCES dimStore(StoreKey),
+  EmployeeKey		  int				NOT NULL, FOREIGN KEY REFERENCES dimEmployee(EmployeeKey),
+	OrderTimeKey		int				NOT NULL, FOREIGN KEY REFERENCES dimTime(TimeKey),
+	ProductKey			int				NOT NULL, FOREIGN KEY REFERENCES dimProduct(ProductKey),
 	quantity				smallint  NOT NULL DEFAULT 0 CHECK (quantity >= 0),
-	discountPct			smallmoney    NOT NULL DEFAULT 0 CHECK (discountPct >= 0),
-	onlineOrderflag			bit     NOT NULL DEFAULT 1,
+	-- discountPct			smallmoney    NOT NULL DEFAULT 0 CHECK (discountPct >= 0),
+	-- onlineOrderflag			bit     NOT NULL DEFAULT 1,
 	profit			    money NOT NULL DEFAULT 0,
   PRIMARY KEY (CustomerKey, StoreKey, EmployeeKey, OrderTimeKey, ProductKey),
 );
