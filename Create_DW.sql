@@ -118,7 +118,7 @@ CREATE TABLE dimCategory
 CREATE TABLE dimProduct
 (
 	ProductKey			int				IDENTITY(1,1) PRIMARY KEY,
-	CategoryKey			int       NOT NULL, FOREIGN KEY REFERENCES dimCategory(CategoryKey),
+	CategoryKey			int       FOREIGN KEY REFERENCES dimCategory(CategoryKey),
 	productID			  int       NOT NULL DEFAULT -1,
   subCategoryName	  nchar(50)         NOT NULL DEFAULT '',
 );
@@ -170,11 +170,12 @@ print 'Creating a fact table required'
 
 CREATE TABLE factSales
 (
-  CustomerKey			int				NOT NULL, FOREIGN KEY REFERENCES dimCustomer(CustomerKey),
-	StoreKey		    int				NOT NULL, FOREIGN KEY REFERENCES dimStore(StoreKey),
-  EmployeeKey		  int				NOT NULL, FOREIGN KEY REFERENCES dimEmployee(EmployeeKey),
-	OrderTimeKey		int				NOT NULL, FOREIGN KEY REFERENCES dimTime(TimeKey),
-	ProductKey			int				NOT NULL, FOREIGN KEY REFERENCES dimProduct(ProductKey),
+  CustomerKey			int				FOREIGN KEY REFERENCES dimCustomer(CustomerKey),
+	StoreKey		    int				FOREIGN KEY REFERENCES dimStore(StoreKey),
+  EmployeeKey		  int				FOREIGN KEY REFERENCES dimEmployee(EmployeeKey),
+	OrderTimeKey		int				FOREIGN KEY REFERENCES dimTime(TimeKey),
+	ProductKey			int				FOREIGN KEY REFERENCES dimProduct(ProductKey),
+
 	quantity				smallint  NOT NULL DEFAULT 0 CHECK (quantity >= 0),
 	-- discountPct			smallmoney    NOT NULL DEFAULT 0 CHECK (discountPct >= 0),
 	-- onlineOrderflag			bit     NOT NULL DEFAULT 1,
