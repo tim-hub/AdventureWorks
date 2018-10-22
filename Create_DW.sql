@@ -8,6 +8,7 @@ create time dimension
 */
 
 
+
 print '***************************************************************'
 print '****** Dropping tables if exist'
 print '***************************************************************'
@@ -132,7 +133,7 @@ CREATE TABLE dimEmployee
   personType			nchar(2)       NOT NULL DEFAULT '',
   jobTitle			  nchar(50)       NOT NULL DEFAULT '',
   hireDate			  date       NOT NULL DEFAULT '9999-12-31',
-  bonus           money       NOT NULL DEFAULT 0,
+  -- bonus           money       NOT NULL DEFAULT 0,
 );
 
 
@@ -153,7 +154,7 @@ CREATE TABLE dimCustomer
   -- AddressKey			int       FOREIGN KEY REFERENCES dimAddress(AddressKey),
 	customerID			int       NOT NULL DEFAULT -1,
   title			nchar(8)       NOT NULL DEFAULT '',
-  name			nchar(150)       NOT NULL DEFAULT '',
+  name			nchar(152)       NOT NULL DEFAULT '',
   email_address			nchar(50)       NOT NULL DEFAULT '',
   phone_number			nchar(25)       NOT NULL DEFAULT '',
 );
@@ -163,7 +164,7 @@ CREATE TABLE dimStore
 	StoreKey			int				IDENTITY(1,1) PRIMARY KEY,
   -- AddressKey			int       FOREIGN KEY REFERENCES dimAddress(AddressKey),
 	businessEntityID			int       NOT NULL DEFAULT -1,
-  name			nchar(150)       NOT NULL DEFAULT '',
+  name			nchar(152)       NOT NULL DEFAULT '',
 );
 
 print 'Creating a fact table required'
