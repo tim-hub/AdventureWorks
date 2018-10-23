@@ -171,9 +171,10 @@ print 'Creating a fact table required'
 
 CREATE TABLE factSales
 (
-  CustomerKey			int				FOREIGN KEY REFERENCES dimCustomer(CustomerKey),
+
+	CustomerKey			int				FOREIGN KEY REFERENCES dimCustomer(CustomerKey),
 	StoreKey		    int				FOREIGN KEY REFERENCES dimStore(StoreKey),
-  EmployeeKey		  int				FOREIGN KEY REFERENCES dimEmployee(EmployeeKey),
+	EmployeeKey		  int				FOREIGN KEY REFERENCES dimEmployee(EmployeeKey),
 	OrderTimeKey		int				FOREIGN KEY REFERENCES dimTime(TimeKey),
 	ProductKey			int				FOREIGN KEY REFERENCES dimProduct(ProductKey),
 
