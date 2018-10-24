@@ -13,7 +13,7 @@ print '***************************************************************'
 print '****** Dropping tables if exist'
 print '***************************************************************'
 
-print 'Drop all DW tables (except dimTime)'
+print 'Drop fact table '
 
 if exists (select * from sys.tables where name='factSales')
 	drop table factSales;
@@ -22,7 +22,7 @@ go
 
 CREATE TABLE factSales
 (
-
+	FactKey			int				IDENTITY(1,1) PRIMARY KEY,
 	CustomerKey			int				FOREIGN KEY REFERENCES dimCustomer(CustomerKey),
 	StoreKey		    int				FOREIGN KEY REFERENCES dimStore(StoreKey),
 	EmployeeKey		  int				FOREIGN KEY REFERENCES dimEmployee(EmployeeKey),
@@ -33,6 +33,6 @@ CREATE TABLE factSales
 	-- discountPct			smallmoney    NOT NULL DEFAULT 0 CHECK (discountPct >= 0),
 	-- onlineOrderflag			bit     NOT NULL DEFAULT 1,
 	profit			    money NOT NULL DEFAULT 0,
-  PRIMARY KEY (CustomerKey, StoreKey, EmployeeKey, OrderTimeKey, ProductKey),
+  -- PRIMARY KEY (CustomerKey, StoreKey, EmployeeKey, OrderTimeKey, ProductKey),
 );
 

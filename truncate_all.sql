@@ -15,4 +15,6 @@ TRUNCATE TABLE	OrderQtyLog14	;
 TRUNCATE TABLE	ProductIDRjectLog4	;
 TRUNCATE TABLE	ProductIDRjectLog17	;
 TRUNCATE TABLE	SubCategoryIdNullRejectLog5	;
+TRUNCATE TABLE	factStaging	;
 TRUNCATE TABLE	PersonAnyNameNullFix54	;
+TRUNCATE TABLE	SalesPersonIDNullReject59	;
